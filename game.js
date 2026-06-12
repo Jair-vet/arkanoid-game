@@ -1,6 +1,41 @@
-// Stubs de sonido — reemplazados en Paso 7
-function playBounceSound() {}
-function playBreakSound() {}
+// --- Sonidos ---
+const _POOL_SIZE = 4;
+
+function _makePool(src) {
+  return Array.from({ length: _POOL_SIZE }, () => {
+    const a = new Audio(src);
+    a.volume = 0.4;
+    return a;
+  });
+}
+
+const _poolBounce = _makePool('assets/sounds/ball-bounce.mp3');
+const _poolBreak  = _makePool('assets/sounds/break-sound.mp3');
+
+let _audioUnlocked = false;
+
+function _unlockAudio() {
+  if (_audioUnlocked) return;
+  _audioUnlocked = true;
+  // Reproducir y pausar inmediatamente para desbloquear el contexto
+  [..._poolBounce, ..._poolBreak].forEach(a => {
+    a.play().then(() => a.pause()).catch(() => {});
+  });
+}
+
+function _playFromPool(pool) {
+  if (!_audioUnlocked) return;
+  const clip = pool.find(a => a.paused || a.ended) || pool[0];
+  clip.currentTime = 0;
+  clip.play().catch(() => {});
+}
+
+function playBounceSound() { _playFromPool(_poolBounce); }
+function playBreakSound()  { _playFromPool(_poolBreak); }
+
+// Desbloquear audio en primer evento de usuario
+window.addEventListener('keydown',   _unlockAudio, { once: true });
+window.addEventListener('mousemove', _unlockAudio, { once: true });
 
 // Estado global
 const state = {
