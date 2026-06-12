@@ -28,6 +28,7 @@ function paddleInit() {
 
   const canvasEl = document.getElementById('gameCanvas');
   canvasEl.addEventListener('mousemove', e => {
+    if (state.phase !== 'playing') return;
     const rect = canvasEl.getBoundingClientRect();
     const scaleX = 800 / rect.width;
     const mouseX = (e.clientX - rect.left) * scaleX;

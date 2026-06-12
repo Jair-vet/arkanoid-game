@@ -111,10 +111,10 @@ Cada paso deja el sistema en estado funcional o al menos ejecutable sin errores.
 
 ## Criterios de aceptación
 
-- [ ] El canvas se renderiza a exactamente 800×600 px sin errores en consola
-- [ ] La paleta responde a mouse y teclado simultáneamente sin conflicto
-- [ ] La paleta no sale de los límites del canvas
-- [ ] La bola rebota correctamente en paredes laterales, techo y paleta
+- [x] El canvas se renderiza a exactamente 800×600 px sin errores en consola
+- [x] La paleta responde a mouse y teclado simultáneamente sin conflicto
+- [x] La paleta no sale de los límites del canvas
+- [x] La bola rebota correctamente en paredes laterales, techo y paleta
 - [ ] Al caer la bola, se descuenta una vida
 - [ ] Con 2 bolas activas, solo se descuenta vida cuando ambas caen
 - [ ] El grid de 10×6 ladrillos se renderiza con el sprite correcto por fila de color

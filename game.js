@@ -40,7 +40,6 @@ window.addEventListener('click',     _unlockAudio, { once: true });
 
 // Estado global
 const state = {
-  lives: 3,
   score: 0,
   phase: 'playing' // 'playing' | 'gameover' | 'win'
 };
@@ -51,7 +50,6 @@ const ctx = canvas.getContext('2d');
 let lastTime = 0;
 
 function initState() {
-  state.lives = 3;
   state.score = 0;
   state.phase = 'playing';
 

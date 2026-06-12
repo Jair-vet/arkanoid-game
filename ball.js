@@ -21,9 +21,32 @@ function _createBall(x, y) {
 }
 
 function ballAddExtra() {
-  if (balls.length >= 2) return;
   // La bola extra sale desde la posición de la paleta
   balls.push(_createBall(paddle.x + paddle.width / 2, paddle.y - BALL_RADIUS - 2));
+}
+
+function ballAddMulti() {
+  // Agrega 2 bolas a la vez con ángulos distintos
+  const cx = paddle.x + paddle.width / 2;
+  const cy = paddle.y - BALL_RADIUS - 2;
+  const currentSpeed = balls.length > 0
+    ? Math.sqrt(balls[0].vx ** 2 + balls[0].vy ** 2)
+    : BALL_SPEED;
+  [-40, 40].forEach(deg => {
+    const a = deg * (Math.PI / 180);
+    balls.push({ x: cx, y: cy, vx: currentSpeed * Math.sin(a), vy: -currentSpeed * Math.cos(a), radius: BALL_RADIUS });
+  });
+}
+
+function ballSpeedBoost() {
+  const MAX_SPEED = BALL_SPEED * 2.5;
+  for (const b of balls) {
+    const speed = Math.sqrt(b.vx ** 2 + b.vy ** 2);
+    const newSpeed = Math.min(speed * 1.4, MAX_SPEED);
+    const ratio = newSpeed / speed;
+    b.vx *= ratio;
+    b.vy *= ratio;
+  }
 }
 
 function ballUpdate(dt) {
@@ -63,16 +86,10 @@ function ballUpdate(dt) {
     }
   }
 
-  // Descontar vida solo cuando no queda ninguna bola
+  // Game over inmediato cuando no queda ninguna bola
   if (balls.length === 0 && state.phase === 'playing') {
-    state.lives -= 1;
-    if (state.lives <= 0) {
-      state.phase = 'gameover';
-      powerupsInit(); // limpiar power-ups en vuelo al terminar
-    } else {
-      // Reposicionar bola para la siguiente vida
-      balls.push(_createBall(400, paddle.y - BALL_RADIUS - 2));
-    }
+    state.phase = 'gameover';
+    powerupsInit();
   }
 }
 

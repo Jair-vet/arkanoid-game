@@ -37,9 +37,9 @@ function _drawHUD(ctx) {
   ctx.font = 'bold 18px monospace';
   ctx.fillStyle = '#fff';
 
-  // Vidas — izquierda
+  // Bolas activas — izquierda
   ctx.textAlign = 'left';
-  ctx.fillText('VIDAS: ' + state.lives, 16, 36);
+  ctx.fillText('BOLAS: ' + balls.length, 16, 36);
 
   // Score — derecha
   ctx.textAlign = 'right';

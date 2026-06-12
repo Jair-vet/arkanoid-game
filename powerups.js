@@ -1,4 +1,4 @@
-const POWERUP_TYPES = ['extraball', 'widepaddle'];
+const POWERUP_TYPES = ['extraball', 'widepaddle', 'multiball', 'speedball'];
 const POWERUP_VY    = 120; // px/s de caída
 const POWERUP_W     = 52;
 const POWERUP_H     = 18;
@@ -9,7 +9,9 @@ const fallingPowerups = [];
 // Colores y etiquetas de cada tipo
 const POWERUP_STYLE = {
   extraball:  { bg: '#44aaff', label: '+BOLA' },
-  widepaddle: { bg: '#ffaa00', label: 'ANCHA' }
+  widepaddle: { bg: '#ffaa00', label: 'ANCHA' },
+  multiball:  { bg: '#ff44cc', label: 'x3BOLA' },
+  speedball:  { bg: '#ff6600', label: 'RÁPIDO' }
 };
 
 function powerupsInit() {
@@ -53,7 +55,11 @@ function powerupsUpdate(dt, timestamp) {
 
 function _applyPowerup(type, timestamp) {
   if (type === 'extraball') {
-    ballAddExtra(); // ignora si ya hay 2 bolas (lógica en ball.js)
+    ballAddExtra();
+  } else if (type === 'multiball') {
+    ballAddMulti();
+  } else if (type === 'speedball') {
+    ballSpeedBoost();
   } else if (type === 'widepaddle') {
     paddle.width = PADDLE_WIDTH_WIDE;
     paddle.wideUntil = timestamp + 8000;
