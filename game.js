@@ -1,3 +1,7 @@
+// Stubs de sonido — reemplazados en Paso 7
+function playBounceSound() {}
+function playBreakSound() {}
+
 // Estado global
 const state = {
   lives: 3,
