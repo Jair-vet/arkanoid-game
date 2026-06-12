@@ -43,7 +43,7 @@ function _clampPaddle() {
 
 function paddleUpdate(dt, timestamp) {
   // Efecto paleta ancha: restaurar si expiró
-  if (paddle.wideUntil !== null && timestamp * 1 > paddle.wideUntil) {
+  if (paddle.wideUntil !== null && timestamp > paddle.wideUntil) {
     paddle.width = PADDLE_WIDTH_NORMAL;
     paddle.wideUntil = null;
   }

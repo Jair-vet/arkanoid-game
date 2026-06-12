@@ -36,6 +36,7 @@ function playBreakSound()  { _playFromPool(_poolBreak); }
 // Desbloquear audio en primer evento de usuario
 window.addEventListener('keydown',   _unlockAudio, { once: true });
 window.addEventListener('mousemove', _unlockAudio, { once: true });
+window.addEventListener('click',     _unlockAudio, { once: true });
 
 // Estado global
 const state = {
@@ -71,6 +72,7 @@ function update(dt, timestamp) {
   // Condición de victoria: todos los ladrillos destruidos
   if (bricksAllCleared()) {
     state.phase = 'win';
+    powerupsInit(); // limpiar power-ups en vuelo al terminar
   }
 }
 

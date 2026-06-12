@@ -68,6 +68,7 @@ function ballUpdate(dt) {
     state.lives -= 1;
     if (state.lives <= 0) {
       state.phase = 'gameover';
+      powerupsInit(); // limpiar power-ups en vuelo al terminar
     } else {
       // Reposicionar bola para la siguiente vida
       balls.push(_createBall(400, paddle.y - BALL_RADIUS - 2));
