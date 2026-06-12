@@ -1,6 +1,6 @@
 # 01-arkanoid-mvp
 
-**Estado:** Draft
+**Estado:** Aprobado
 **Fecha:** 2026-06-12
 **Dependencias:** ninguna (spec inicial)
 **Objetivo:** Implementar un juego Arkanoid jugable en el navegador con un nivel, tres vidas, power-ups de bola extra y paleta ancha, y overlays de victoria/game over.
