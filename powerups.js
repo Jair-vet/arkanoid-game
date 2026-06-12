@@ -1,8 +1,14 @@
-const POWERUP_TYPES = ['extraball', 'widepaddle', 'multiball', 'speedball'];
+// Pesos: más repeticiones = más probabilidad de salir
+const POWERUP_TYPES = [
+  'extraball', 'extraball', 'extraball', 'extraball', // 4x — frecuente
+  'multiball', 'multiball', 'multiball', 'multiball', 'multiball', // 5x — muy frecuente
+  'widepaddle', 'widepaddle', 'widepaddle', 'widepaddle', // 4x — frecuente
+  'speedball'
+];
 const POWERUP_VY    = 120; // px/s de caída
 const POWERUP_W     = 52;
 const POWERUP_H     = 18;
-const POWERUP_PROB  = 0.15;
+const POWERUP_PROB  = 0.40; // 40% de prob por ladrillo roto
 
 const fallingPowerups = [];
 
